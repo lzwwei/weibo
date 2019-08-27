@@ -39,12 +39,14 @@ class UserController extends Controller
 
          public function edit(User $user)
 	 {
+             $this->authorize('update',$user);
 	     return view('user.edit', compact('user'));
 	 }
 
          public function update(User $user, Request $request)
 	 {
-	     $this->validate($request, [
+		 $this->authorize('update',$user);
+		 $this->validate($request, [
 	         'name'=>'required|max:50',
 		 'password'=>'required|confirmed|min:6'
 	     
@@ -68,5 +70,24 @@ class UserController extends Controller
 	     
 	     return redirect()->route('users.show',$user->id);
 	 }
+
+
+         public function __construct()
+	 {
+		 $this->middleware('auth',[
+		 
+		     'except'=>['show','create','store']
+	     ]);
+
+
+		 $this->middleware('guest',[
+		     'only'=>['create']
+		 ]);
+	 }
+
+
+
+
+
 
 }
