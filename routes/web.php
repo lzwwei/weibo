@@ -29,3 +29,4 @@ Route::delete('/logout','SessionController@destroy')->name('logout');
 
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 
+Route::get('signup/confirm/{token}','UserController@confirmEmail')->name('confirm_email');
