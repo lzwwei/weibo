@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,13 +45,15 @@ class User extends Authenticatable
 	return "http://www.gravatar.com/avatar/$hash?s=$size";
     }
 
-    public static function boot()
+    public function statuses()
     {
-        parent::boot();
-	static::creating(function($user){
-	
-	    $user->activation_token = Str::random(10);
-    });
+        return $this->hasMany(Status::class);
+    }  
+
+    public function feed()
+    {
+        return $this->statuses()
+                    ->orderBy('created_at', 'desc');
     }
 
 }

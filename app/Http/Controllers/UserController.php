@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 use Auth;
 use Mail;
 
@@ -16,7 +16,10 @@ class UserController extends Controller
 
 	public function show(User $user)
 	{
-	    return view('user.show', compact('user'));
+		$statuses = $user->statuses()
+                           ->orderBy('created_at', 'desc')
+                           ->paginate(10);
+	    return view('user.show', compact('user','statuses'));
 	}
 
         public function store( Request $request)

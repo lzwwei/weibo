@@ -2,6 +2,7 @@
 
 namespace App\Admin\Forms;
 
+
 use Encore\Admin\Widgets\Form;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class Setting extends Form
 
         admin_success('数据处理成功！');
 
-
+        
         return back();
     }
 
@@ -54,4 +55,8 @@ class Setting extends Form
             'created_at' => now(),
         ];
     }
+
+   
+
+
 }
