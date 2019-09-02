@@ -29,7 +29,7 @@ Route::delete('/logout','SessionController@destroy')->name('logout');
 
 Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 
-Route::get('signup/confirm/{token}','UserController@confirmEmail')->name('confirm_email');
+Route::get('/signup/confirm/{token}','UserController@confirmEmail')->name('confirm_email');
 
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 
@@ -41,9 +41,9 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 
 Route::resource('statuses', 'StatusesController', ['only' => ['store', 'destroy']]);
 
-Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');
+Route::get('/users/{user}/followings', 'UserController@followings')->name('users.followings');
 
-Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');
+Route::get('/users/{user}/followers', 'UserController@followers')->name('users.followers');
 
 Route::post('/users/followers/{user}', 'FollowersController@store')->name('followers.store');
 

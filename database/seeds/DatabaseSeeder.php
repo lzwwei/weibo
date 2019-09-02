@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use illuminate\Database\Eloquent\Model;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**

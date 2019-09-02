@@ -9,7 +9,7 @@
     </section>
 
     @if (Auth::check())
-      @include('users._follow_form')
+      @include('user._follow_form')
     @endif
 
     <section class="stats mt-2">
