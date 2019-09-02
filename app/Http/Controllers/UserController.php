@@ -96,7 +96,7 @@ class UserController extends Controller
 	      $users = User::paginate(10);
 	      return view('user.index', compact('users'));
 	   }
-<<<<<<< HEAD
+
          
 	 public function destroy(User $user)
 	 {
@@ -105,15 +105,9 @@ class UserController extends Controller
 	     seesion()->flash('success','成功删除用户！');
 	     return back();
 	 }
-=======
 
-	 public function destroy(User $user)
-	 {
-	     $this->authorize('destroy', $user);
-             $user->delete();
-	     session()->flash('success','成功删除用户！');
-	     return back();
-	 }
+
+
 
         protected function sendEmailConfirmationTo($user)
             {
@@ -152,6 +146,6 @@ class UserController extends Controller
 
 
     }
->>>>>>> account-activation-password-resets
+
 
 
