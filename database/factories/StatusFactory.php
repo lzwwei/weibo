@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models;
+use App\Models\User;
 use Faker\Generator as Faker;
 
-$factory->define(Models::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     $date_time = $faker->date . ' ' . $faker->time;
     return [
         'content'    => $faker->text(),
