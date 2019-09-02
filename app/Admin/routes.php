@@ -1,5 +1,6 @@
 <?php
 
+use App\Admin\Forms\Setting;
 use Illuminate\Routing\Router;
 
 Admin::routes();
@@ -12,5 +13,5 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('users',UserController::class);
-    $router->resource('settings',SettingsController::class);
+    $router->get('settings','SettingsController@settings')->name('admin.settings');
 });

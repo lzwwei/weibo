@@ -96,7 +96,10 @@ class UserController extends AdminController
             // });
           //like查询
                // $grid->quickSearch();//快速搜索
-
+            //插入样式
+            //    Admin::script('console.log("hello world");');
+            //    Admin::style('.form-control {margin-top: 10px;}');
+            //    Admin::html('<template>...</template>');
 
             //快速创建
             //    $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
@@ -114,7 +117,141 @@ class UserController extends AdminController
             //     $create->date('date','日期');
             // });
             // $model->where('username', 'REGEXP', 'song');
-            $states = [
+
+            //     数据模型
+            // public function show($id, Content $content)
+            // {
+            // return $content->header('Post')
+            //     ->description('详情')
+            //     ->body(Admin::show(Post::findOrFail($id), function (Show $show) {
+
+            //         $show->id('ID');
+            //         $show->title('标题');
+            //         $show->content('内容');
+            //         $show->rate();
+            //         $show->created_at();
+            //         $show->updated_at();
+            //         $show->release_at();
+            // }));
+            //  }
+            //内容转义
+            //$show->avatar()->unescape()->as(function ($avatar) {
+
+            // return "<img src='{$avatar}' />";
+
+            //     });
+
+            //修改样式
+            //$show->panel()
+            // ->style('danger')
+            // ->title('post基本信息...');
+
+            //面板工具
+            // $show->panel()
+            // ->tools(function ($tools) {
+            //     $tools->disableEdit();
+            //     $tools->disableList();
+            //     $tools->disableDelete();
+            // });;
+            //修改显示内容
+            //$show->title()->as(function ($title) {
+            //     return "<{$title}>";
+            // });
+
+            // $show->contents()->as(function ($content) {
+            //     return "<pre>{$content}</pre>";
+            // });
+
+            //将图片/文件路径显示为图片/文件；
+            //$show->avatar()->image();//->file();
+
+
+            //将url链接显示为html链接
+            //$show->homepage()->link();
+
+            //将tag显示为label
+            //$show->tag()->label();
+
+            //将rate内容显示为badge
+            //$show->rate()->badge();
+
+            //将extra内容显示为json
+            //$show->extra()->json();
+
+            //图片轮播（'images'为图片数组）
+            //$show->field('images')->carousel();
+            // $show->field('images')->carousel($width = 300, int $height = 200, $server);//设置图片大小和服务器
+
+            //显示文件尺寸
+            //$show->field('file_size')->filesize();
+
+            // 检查权限，有create-post权限的用户或者角色可以访问创建文章页面
+            // Permission::check('create-post');
+
+            // $grid->actions(function ($actions) {
+
+            //     // 没有`delete-image`权限的角色不显示删除按钮
+            //     if (!Admin::user()->can('delete-image')) {
+            //         $actions->disableDelete();
+            //     }
+            // });
+            
+            // // 只有具有`view-title-column`权限的用户才能显示`title`这一列
+            // if (Admin::user()->can('view-title-column')) {
+            //     $grid->column('title');
+            // }
+            
+            // 获取当前用户对象
+            // Admin::user();
+            // 获取当前用户id
+            // Admin::user()->id;
+            // 获取用户角色
+            // Admin::user()->roles;
+            // 获取用户的权限
+            // Admin::user()->permissions;
+            // 用户是否某个角色
+            // Admin::user()->isRole('developer');
+            // 是否有某个权限
+            // Admin::user()->can('create-post');
+            // 是否没有某个权限
+            // Admin::user()->cannot('delete-post');
+            // 是否是超级管理员
+            // Admin::user()->isAdministrator();
+            // 是否是其中的角色
+            // Admin::user()->inRoles(['editor', 'developer']);
+
+
+            //权限中间件
+            // 允许administrator、editor两个角色访问group里面的路由
+            // Route::group([
+            //     'middleware' => 'admin.permission:allow,administrator,editor',
+            // ], function ($router) {
+
+            //     $router->resource('users', UserController::class);
+            //     ...
+
+            // });
+
+            // // 禁止developer、operator两个角色访问group里面的路由
+            // Route::group([
+            //     'middleware' => 'admin.permission:deny,developer,operator',
+            // ], function ($router) {
+
+            //     $router->resource('users', UserController::class);
+            //     ...
+
+            // });
+
+            // // 有edit-post、create-post、delete-post三个权限的用户可以访问group里面的路由
+            // Route::group([
+            //     'middleware' => 'admin.permission:check,edit-post,create-post,delete-post',
+            // ], function ($router) {
+
+            //     $router->resource('posts', PostController::class);
+            //     ...
+
+            // });
+                        $states = [
                 'on' => ['text' => 'YES'],
                 'off' => ['text' => 'NO'],
             ];
@@ -162,8 +299,114 @@ class UserController extends AdminController
         $show->field('activation_token', __('Activation token'));
         $show->field('activated', __('Activated'));
 
-        return $show;
-    }
+
+        //  外部数据源
+//         <?php
+
+            // namespace App\Models\Movie;
+
+            // use Illuminate\Database\Eloquent\Model;
+            // use Illuminate\Pagination\LengthAwarePaginator;
+            // use Illuminate\Support\Facades\Request;
+
+            // class InTheater extends Model
+            // {
+            //     public function paginate()
+            //     {
+            //         $perPage = Request::get('per_page', 10);
+
+            //         $page = Request::get('page', 1);
+
+            //         $start = ($page-1)*$perPage;
+
+            //         $data = file_get_contents("https://api.douban.com/v2/movie/in_theaters?city=上海&start=$start&count=$perPage");
+
+            //         $data = json_decode($data, true);
+
+            //         extract($data);
+
+            //         $movies = static::hydrate($subjects);
+
+            //         $paginator = new LengthAwarePaginator($movies, $total, $perPage);
+
+            //         $paginator->setPath(url()->current());
+
+            //         return $paginator;
+            //     }
+
+            //     public static function with($relations)
+            //     {
+            //         return new static;
+            //     }
+
+            //     // 覆盖`orderBy`来收集排序的字段和方向
+            //     public function orderBy($column, $direction = 'asc')
+            //     {
+
+            //     }
+
+            //     // 覆盖`where`来收集筛选的字段和条件
+            //     public function where($column, $operator = null, $value = null, $boolean = 'and')
+            //     {
+
+            //     }
+
+            //         return $show;
+
+
+
+            // 获取单项数据展示在form中
+            // public function findOrFail($id)
+            // {
+            //     $data = file_get_contents("http://api.douban.com/v2/movie/subject/$id");
+
+            //     $data = json_decode($data, true);
+
+            //     return static::newFromBuilder($data);
+            // }
+
+            // // 保存提交的form数据
+            // public function save(array $options = [])
+            // {
+            //     $attributes = $this->getAttributes();
+
+            //     // save $attributes
+            // }
+
+            //  sql查询
+            // public function paginate()
+            //     {
+            //         $perPage = Request::get('per_page', 10);
+
+            //         $page = Request::get('page', 1);
+
+            //         $start = ($page-1)*$perPage;
+
+            //         // 运行sql获取数据数组
+            //         $sql = 'select * from ...';
+
+            //         $result = DB::select($sql);
+
+            //         $movies = static::hydrate($result);
+
+            //         $paginator = new LengthAwarePaginator($movies, $total, $perPage);
+
+            //         $paginator->setPath(url()->current());
+
+            //         return $paginator;
+            //     }
+
+            //     public static function with($relations)
+            //     {
+            //         return new static;
+            //     }
+
+
+
+
+
+
+                }
 
     /**
      * Make a form builder.

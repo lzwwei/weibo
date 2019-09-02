@@ -71,6 +71,20 @@ return [
             'url' => env('APP_URL').'/public/upload/',
             ],
 
+        // 'qiniu' => [
+        //     'driver'  => 'qiniu',
+        //     'domains' => [
+        //         'default'   => 'xxxxx.com1.z0.glb.clouddn.com', //你的七牛域名
+        //         'https'     => 'dn-yourdomain.qbox.me',         //你的HTTPS域名
+        //         'custom'    => 'static.abc.com',                //你的自定义域名
+        //         ],
+        //     'access_key'=> '',  //AccessKey
+        //     'secret_key'=> '',  //SecretKey
+        //     'bucket'    => '',  //Bucket名字
+        //     'notify_url'=> '',  //持久化处理回调地址
+        //     'url'       => 'http://of8kfibjo.bkt.clouddn.com/',  // 填写文件访问根url
+        // ],
+
     ],
 
 ];

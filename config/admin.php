@@ -153,7 +153,7 @@ return [
     'upload' => [
 
         // Disk in `config/filesystem.php`.
-        'disk' => 'admin',
+        'disk' => 'admin',//配合filesystems的qiniu
 
         // Image and file upload path under the disk above.
         'directory' => [
@@ -373,7 +373,7 @@ return [
     | The global Grid action display class.
     |--------------------------------------------------------------------------
     */
-    'grid_action_class' => false,//\Encore\Admin\Grid\Displayers\DropdownActions::class,
+    'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
 
     /*
     |--------------------------------------------------------------------------

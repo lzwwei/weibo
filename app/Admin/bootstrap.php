@@ -1,5 +1,6 @@
 <?php
 use Encore\Admin\Grid\Column;
+use Encore\Admin\Admin;
 //use Encore\Admin\Grid;
 /**
  * Laravel-admin - admin builder based on Laravel.
@@ -18,7 +19,7 @@ use Encore\Admin\Grid\Column;
  * Admin::js('/packages/prettydocs/js/main.js');
  *
  */
-
+Admin::script('console.log("hello world");');
 Encore\Admin\Form::forget(['map', 'editor']);
 Column::extend('psv',function($value,$psv){
     return "<span style='color:$psv'>$value</span>";
